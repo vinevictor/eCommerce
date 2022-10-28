@@ -2,8 +2,11 @@
 var id = [], nameProduct = [], price = [], review = [];
 var idNumber = 1
 var arrCounter = 0
+var search
 
-Registration();
+search = parseInt(prompt("Digite a ID do produto."))
+SearchById(search);
+
 
 function Registration() {
     id[arrCounter] = idNumber;
@@ -14,4 +17,12 @@ function Registration() {
     arrCounter++;
     return id, nameProduct, price, review;
 };
+
+function SearchById(search) {
+    for (var i = 0; i < id.length; i++) {
+        if (search == id[i]) {
+            console.log(id[i] + " | " + nameProduct[i] + " | " + price[i] + " | " + review[i]);
+        };
+    }
+}
 
