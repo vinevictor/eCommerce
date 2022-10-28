@@ -18,7 +18,7 @@ function Registration() {
     return id, nameProduct, price, review;
 };
 
-function SearchById() {
+function SearchById(id) {
     var search = parseInt(prompt("Digite o ID do Produto."))
     for (var i = 0; i < id.length; i++) {
         if (search == id[i]) {
@@ -27,7 +27,7 @@ function SearchById() {
     }
 }
 
-function SearchByName() {
+function SearchByName(nameProduct) {
     var search = prompt("Digite o Nome do Produto.");
     for (var i = 0; i < id.length; i++) {
         if (search == nameProduct[i]) {
@@ -36,5 +36,10 @@ function SearchByName() {
     }
 }
 
+function OrderById(id) {
+    for (var i = 0; i < id.length; i++) {
+        console.log(id[i] + " | " + nameProduct[i] + " | " + price[i] + " | " + review[i]);
 
+    }
+}
 
