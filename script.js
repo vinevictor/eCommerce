@@ -4,19 +4,26 @@ var idNumber = 1;
 var arrCounter = 0;
 var arrSupId = [], arrSupName = [], arrSupPrice = [], arrSupReview = [];
 var counterArraySup = 0
+var repeat = true
 
-id[0] = 2, id[1] = parseInt(30), id[2] = 3, id[3] = 1, id[4] = 4;
-nameProduct[0] = "mouse5", nameProduct[1] = "mouse4", nameProduct[2] = "mouse3", nameProduct[3] = "mouse2", nameProduct[4] = "mouse1";
-price[0] = parseInt(40), price[1] = parseInt(50), price[2] = parseInt(30), price[3] = parseInt(20), price[4] = parseInt(10);
-review[0] = parseInt(2), review[1] = parseInt(5), review[2] = parseInt(3), review[3] = parseInt(5), review[4] = parseInt(4);
+
 
 function Registration() {
-    id[arrCounter] = idNumber;
-    nameProduct[arrCounter] = prompt("Nome do produto:");
-    price[arrCounter] = parseInt(prompt("Preço do produto:"));
-    review[arrCounter] = parseInt(prompt("Avaliação 1-5:"));
-    idNumber++;
-    arrCounter++;
+    var repeatRegistration = true
+    while (repeatRegistration) {
+        id[arrCounter] = idNumber;
+        nameProduct[arrCounter] = prompt("Nome do produto:");
+        price[arrCounter] = parseInt(prompt("Preço do produto:"));
+        review[arrCounter] = parseInt(prompt("Avaliação 1-5:"));
+        idNumber++;
+        console.log("Produto Cadastrado.")
+        console.log("ID:" + id[arrCounter] + " | " + " Nome: " + nameProduct[arrCounter] + " | " + "Preço: " + price[arrCounter] + " | " + " Avaliação: " + review[arrCounter]);
+        arrCounter++;
+        var stopRegistration = prompt("Deseja Cadastrar Mais Produtos? s/n");
+        if (stopRegistration == "n" || stopRegistration == "N") {
+            repeatRegistration = false;
+        }
+    }
     return id, nameProduct, price, review;
 };
 
@@ -24,12 +31,12 @@ function SearchById() {
     var search = parseInt(prompt("Digite o ID do Produto."))
     for (var i = 0; i < id.length; i++) {
         if (search == id[i]) {
-            console.log(id[i] + " | " + nameProduct[i] + " | " + price[i] + " | " + review[i]);
+            console.log("ID:" + id[i] + " | " + " Nome: " + nameProduct[i] + " | " + "Preço: " + price[i] + " | " + " Avaliação: " + review[i]);
         };
     }
 };
 
-function SearchByName(nameProduct) {
+function SearchByName() {
     var search = prompt("Digite o Nome do Produto.");
     for (var i = 0; i < id.length; i++) {
         if (search == nameProduct[i]) {
@@ -54,7 +61,7 @@ function OrderById() {
             }
         }
         for (var i3 = 0; i3 < id.length; i3++) {
-            if (smallestNumber == id[i3]) {
+            if (smallestNumber == id[i3] && smallestNumber != 0) {
                 arrSupId[counterArraySup] = parseInt(id[i3])
                 arrSupName[counterArraySup] = nameProduct[i3]
                 arrSupPrice[counterArraySup] = parseInt(price[i3])
@@ -66,7 +73,7 @@ function OrderById() {
         }
     }
     for (var i = 0; i < arrSupId.length; i++) {
-        console.log(arrSupId[i] + " | " + arrSupName[i] + " | " + arrSupPrice[i] + " | " + arrSupReview[i]);
+        console.log("ID:" + arrSupId[i] + " | " + " Nome: " + arrSupName[i] + " | " + "Preço: " + arrSupPrice[i] + " | " + " Avaliação: " + arrSupReview[i]);
     }
     id = arrSupId
     nameProduct = arrSupName
@@ -83,15 +90,15 @@ function OrderByPrice() {
     arrSupReview = [];
     counterArraySup = 0;
     var biggestPrice = 0;
-    for (var i = 0; i < price.length; i++) {
+    for (var i = 0; i < id.length; i++) {
         biggestPrice = price[i];
-        for (var i2 = 0; i2 < price.length; i2++) {
+        for (var i2 = 0; i2 < id.length; i2++) {
             if (biggestPrice < price[i2]) {
                 biggestPrice = price[i2]
             }
         }
-        for (var i3 = 0; i3 < price.length; i3++) {
-            if (biggestPrice == price[i3]) {
+        for (var i3 = 0; i3 < id.length; i3++) {
+            if (biggestPrice == price[i3] && biggestPrice != 0) {
                 arrSupId[counterArraySup] = parseInt(id[i3])
                 arrSupName[counterArraySup] = nameProduct[i3]
                 arrSupPrice[counterArraySup] = parseInt(price[i3])
@@ -102,13 +109,15 @@ function OrderByPrice() {
             }
         }
     }
+
     for (var i = 0; i < arrSupId.length; i++) {
-        console.log(arrSupId[i] + " | " + arrSupName[i] + " | " + arrSupPrice[i] + " | " + arrSupReview[i]);
+        console.log("ID:" + arrSupId[i] + " | " + " Nome: " + arrSupName[i] + " | " + "Preço: " + arrSupPrice[i] + " | " + " Avaliação: " + arrSupReview[i]);
     }
     id = arrSupId;
     nameProduct = arrSupName;
     price = arrSupPrice;
     review = arrSupReview;
+
 };
 
 function OrderByReview() {
@@ -137,8 +146,9 @@ function OrderByReview() {
         }
 
     }
+
     for (var i = 0; i < arrSupId.length; i++) {
-        console.log(arrSupId[i] + " | " + arrSupName[i] + " | " + arrSupPrice[i] + " | " + arrSupReview[i]);
+        console.log("ID:" + arrSupId[i] + " | " + " Nome: " + arrSupName[i] + " | " + "Preço: " + arrSupPrice[i] + " | " + " Avaliação: " + arrSupReview[i]);
     }
     id = arrSupId
     nameProduct = arrSupName
@@ -160,23 +170,26 @@ function UpdatePrice() {
 }
 
 function DeleteProduct() {
+    arrSupId = [];
+    arrSupName = [];
+    arrSupPrice = [];
+    arrSupReview = [];
+
     counterArraySup = 0
     var search = parseInt(prompt("Digite o ID do Produto que deseja EXCLUIR."))
     for (var i = 0; i < id.length; i++) {
-        if (search == id[i] && i < id.length - 1) {
-            arrSupId[counterArraySup] = id[i + 1];
+        if (search == id[i]) {
+            arrSupId[counterArraySup] = parseInt(id[i + 1]);
             arrSupName[counterArraySup] = nameProduct[i + 1];
-            arrSupPrice[counterArraySup] = price[i + 1];
-            arrSupReview[counterArraySup] = review[i + 1];
+            arrSupPrice[counterArraySup] = parseInt(price[i + 1]);
+            arrSupReview[counterArraySup] = parseInt(review[i + 1]);
             counterArraySup++
-            i++
-        } else if (search == id[i] && i == id.length - 1) {
-
+            i++;
         } else {
-            arrSupId[counterArraySup] = id[i];
+            arrSupId[counterArraySup] = parseInt(id[i]);
             arrSupName[counterArraySup] = nameProduct[i];
-            arrSupPrice[counterArraySup] = price[i];
-            arrSupReview[counterArraySup] = review[i];
+            arrSupPrice[counterArraySup] = parseInt(price[i]);
+            arrSupReview[counterArraySup] = parseInt(review[i]);
             counterArraySup++
         }
     }
@@ -185,12 +198,46 @@ function DeleteProduct() {
     nameProduct = arrSupName;
     price = arrSupPrice;
     review = arrSupReview;
+
 }
-// OrderById();
-// OrderByPrice();
-// OrderByReview();
-// UpdatePrice();
-DeleteProduct();
+
+function Options() {
+    console.log("eCommerce Vinicius Victor;");
+    var options = parseInt(prompt("Digite 1 - Cadastrar um Produto | 2 - Procurar por ID | 3 - Procurar por Nome | 4 - Ordenar por ID | 5 - Ordenar por Preço | 6 - Ordenar por Avaliação | 7 - Atualizar Preço | 8 - Deletar Produto | 9 - Encerrar Programa"))
+    if (options == 1) {
+        console.clear();
+        Registration();
+    } else if (options == 2) {
+        console.clear();
+        SearchById();
+    } else if (options == 3) {
+        console.clear();
+        SearchByName();
+    } else if (options == 4) {
+        console.clear();
+        OrderById();
+    } else if (options == 5) {
+        console.clear();
+        OrderByPrice();
+    } else if (options == 6) {
+        console.clear();
+        OrderByReview();
+    } else if (options == 7) {
+        console.clear();
+        UpdatePrice();
+    } else if (options == 8) {
+        console.clear();
+        DeleteProduct();
+    } else if (options == 9) {
+        repeat = false;
+    }
+    return repeat;
+}
+
+while (repeat) {
+    Options();
+}
+
 
 
 
