@@ -20,7 +20,7 @@ function Registration() {
     return id, nameProduct, price, review;
 };
 
-function SearchById(id) {
+function SearchById() {
     var search = parseInt(prompt("Digite o ID do Produto."))
     for (var i = 0; i < id.length; i++) {
         if (search == id[i]) {
@@ -147,9 +147,21 @@ function OrderByReview() {
 
 
 }
+
+function UpdatePrice() {
+    var search = parseInt(prompt("Digite o ID do Produto que queira atualizar o Preço."))
+    for (var i = 0; i < id.length; i++) {
+        if (search == id[i]) {
+            price[i] = parseInt(prompt("Digite o Preço."))
+            console.log("Preço atualizado.")
+        }
+    }
+
+}
 // OrderById();
 // OrderByPrice();
-OrderByReview();
+// OrderByReview();
+UpdatePrice();
 
 
 
