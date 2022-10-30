@@ -158,10 +158,40 @@ function UpdatePrice() {
     }
 
 }
+
+function DeleteProduct() {
+    counterArraySup = 0
+    var search = parseInt(prompt("Digite o ID do Produto que deseja EXCLUIR."))
+    for (var i = 0; i < id.length; i++) {
+        if (search == id[i] && i < id.length - 1) {
+            arrSupId[counterArraySup] = id[i + 1];
+            arrSupName[counterArraySup] = nameProduct[i + 1];
+            arrSupPrice[counterArraySup] = price[i + 1];
+            arrSupReview[counterArraySup] = review[i + 1];
+            counterArraySup++
+            i++
+        } else if (search == id[i] && i == id.length - 1) {
+
+        } else {
+            arrSupId[counterArraySup] = id[i];
+            arrSupName[counterArraySup] = nameProduct[i];
+            arrSupPrice[counterArraySup] = price[i];
+            arrSupReview[counterArraySup] = review[i];
+            counterArraySup++
+        }
+    }
+    console.log("Produto deletado com sucesso.")
+    id = arrSupId;
+    nameProduct = arrSupName;
+    price = arrSupPrice;
+    review = arrSupReview;
+}
 // OrderById();
 // OrderByPrice();
 // OrderByReview();
-UpdatePrice();
+// UpdatePrice();
+DeleteProduct();
+
 
 
 
