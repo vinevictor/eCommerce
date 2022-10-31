@@ -178,7 +178,7 @@ function DeleteProduct() {
     counterArraySup = 0
     var search = parseInt(prompt("Digite o ID do Produto que deseja EXCLUIR."))
     for (var i = 0; i < id.length; i++) {
-        if (search == id[i]) {
+        if (search == id[i] && i < id.length - 1) {
             arrSupId[counterArraySup] = parseInt(id[i + 1]);
             arrSupName[counterArraySup] = nameProduct[i + 1];
             arrSupPrice[counterArraySup] = parseInt(price[i + 1]);
