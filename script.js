@@ -27,7 +27,7 @@ function Registration() {
     return id, nameProduct, price, review;
 };
 
-function SearchById(id) {
+function SearchById() {
     var search = parseInt(prompt("Digite o ID do Produto."))
     for (var i = 0; i < id.length; i++) {
         if (search == id[i]) {
@@ -36,7 +36,7 @@ function SearchById(id) {
     }
 };
 
-function SearchByName(nameProduct) {
+function SearchByName() {
     var search = prompt("Digite o Nome do Produto.");
     for (var i = 0; i < id.length; i++) {
         if (search == nameProduct[i]) {
@@ -44,7 +44,6 @@ function SearchByName(nameProduct) {
         }
     }
 };
-
 
 function OrderById() {
     arrSupId = [];
@@ -185,7 +184,10 @@ function DeleteProduct() {
             arrSupReview[counterArraySup] = parseInt(review[i + 1]);
             counterArraySup++
             i++;
-        } else {
+        } else if (search == id[i] && i == id.length - 1) {
+
+        }
+        else {
             arrSupId[counterArraySup] = parseInt(id[i]);
             arrSupName[counterArraySup] = nameProduct[i];
             arrSupPrice[counterArraySup] = parseInt(price[i]);
@@ -238,12 +240,7 @@ while (repeat) {
     Options();
 }
 
-function OrderById(id) {
-    for (var i = 0; i < id.length; i++) {
-        console.log(id[i] + " | " + nameProduct[i] + " | " + price[i] + " | " + review[i]);
 
-    }
-}
 
 
 
