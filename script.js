@@ -6,7 +6,7 @@ var arrSupId = [], arrSupName = [], arrSupPrice = [], arrSupReview = [];
 var counterArraySup = 0
 var shopCartProducts = [], shopCartQuantity = [], shopCartPrice = [];
 var arrSupShopCartProducts = [], arrSupShopCartQuantity = [], arrSupShopCartPrice = [];
-var product, quantity = 0;
+var product, quantity = 0, priceTotal = 0;
 
 
 var repeat = true;
@@ -249,6 +249,8 @@ function Options() {
         product = prompt("Qual Produto deseja Remover do Carrinho?")
         quantity = parseInt(prompt("Quantidade:"))
         CartDelete(product, quantity);
+    } else if (options == 12) {
+        ReturnPriceTotal();
     }
 
     return repeat;
@@ -278,7 +280,7 @@ function CartAdd(product, quantity) {
     };
     console.log("Produto Adicionado No Carrinho.");
     return shopCartProducts, shopCartQuantity, shopCartPrice;
-}
+};
 
 function CartDelete(product, quantity) {
     arrSupShopCartPrice = [];
@@ -309,7 +311,17 @@ function CartDelete(product, quantity) {
     shopCartPrice = arrSupShopCartPrice;
 
     return shopCartProducts, shopCartQuantity, shopCartPrice;
-}
+};
+
+function ReturnPriceTotal() {
+    priceTotal = 0
+    for (var i = 0; i < shopCartPrice.length; i++) {
+        priceTotal = priceTotal + shopCartPrice[i]
+    }
+    console.log("Valor Total do Carrinho: " + priceTotal)
+
+    return priceTotal;
+};
 
 
 
