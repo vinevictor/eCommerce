@@ -6,6 +6,7 @@ var arrSupId = [], arrSupName = [], arrSupPrice = [], arrSupReview = [];
 var counterArraySup = 0
 var shopCartProducts = [], shopCartQuantity = [], shopCartPrice = [];
 var arrSupShopCartProducts = [], arrSupShopCartQuantity = [], arrSupShopCartPrice = [];
+var product, quantity = 0;
 
 
 var repeat = true;
@@ -241,9 +242,13 @@ function Options() {
     } else if (options == 9) {
         repeat = false;
     } else if (options == 10) {
-        var product = prompt("Qual Produto deseja adicionar ao Carrinho?")
-        var quantity = parseInt(prompt("Quantidade:"))
+        product = prompt("Qual Produto deseja adicionar ao Carrinho?")
+        quantity = parseInt(prompt("Quantidade:"))
         CartAdd(product, quantity);
+    } else if (options == 11) {
+        product = prompt("Qual Produto deseja Remover do Carrinho?")
+        quantity = parseInt(prompt("Quantidade:"))
+        CartDelete(product, quantity);
     }
 
     return repeat;
@@ -271,8 +276,42 @@ function CartAdd(product, quantity) {
             }
         };
     };
+    console.log("Produto Adicionado No Carrinho.");
     return shopCartProducts, shopCartQuantity, shopCartPrice;
 }
+
+function CartDelete(product, quantity) {
+    arrSupShopCartPrice = [];
+    arrSupShopCartProducts = [];
+    arrSupShopCartQuantity = [];
+    counterArraySup = 0
+    for (var i = 0; i < nameProduct.length; i++) {
+        if (product == nameProduct[i]) {
+            for (var i2 = 0; i2 < shopCartProducts.length; i2++) {
+                if (product == shopCartProducts[i2]) {
+                    shopCartQuantity[i2] = shopCartQuantity[i2] - quantity;
+                    shopCartPrice[i2] = shopCartPrice[i2] - (price[i] * quantity);
+                }
+            }
+        }
+    }
+    for (var i3 = 0; i3 < shopCartProducts.length; i3++) {
+        if (shopCartQuantity[i3] >= 1) {
+            arrSupShopCartProducts[counterArraySup] = shopCartProducts[i3];
+            arrSupShopCartQuantity[counterArraySup] = shopCartQuantity[i3];
+            arrSupShopCartPrice[counterArraySup] = shopCartPrice[i3];
+            counterArraySup++;
+        }
+    }
+    console.log("Quantidade/Produto Removida com Sucesso.")
+    shopCartProducts = arrSupShopCartProducts;
+    shopCartQuantity = arrSupShopCartQuantity;
+    shopCartPrice = arrSupShopCartPrice;
+
+    return shopCartProducts, shopCartQuantity, shopCartPrice;
+}
+
+
 
 
 while (repeat) {
