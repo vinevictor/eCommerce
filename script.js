@@ -214,7 +214,7 @@ function DeleteProduct() {
 
 function Options() {
     console.log("eCommerce Vinicius Victor;");
-    var options = parseInt(prompt("Digite 1 - Cadastrar um Produto | 2 - Procurar por ID | 3 - Procurar por Nome | 4 - Ordenar por ID | 5 - Ordenar por Preço | 6 - Ordenar por Avaliação | 7 - Atualizar Preço | 8 - Deletar Produto | 9 - Encerrar Programa"))
+    var options = parseInt(prompt("Digite 1 - Cadastrar um Produto | 2 - Procurar por ID | 3 - Procurar por Nome | 4 - Ordenar por ID | 5 - Ordenar por Preço | 6 - Ordenar por Avaliação | 7 - Atualizar Preço | 8 - Deletar Produto | 9 - Encerrar Programa | 10 - Adicionar Produto ao Carrinho | 11 - Remover Produto do Carrinho | 12 - Ver Preço Total do Carrinho | 13 - Exibir Carrinho"));
     if (options == 1) {
         console.clear();
         Registration();
@@ -240,18 +240,23 @@ function Options() {
         console.clear();
         DeleteProduct();
     } else if (options == 9) {
+        console.clear();
         repeat = false;
     } else if (options == 10) {
+        console.clear();
         product = prompt("Qual Produto deseja adicionar ao Carrinho?")
         quantity = parseInt(prompt("Quantidade:"))
         CartAdd(product, quantity);
     } else if (options == 11) {
+        console.clear();
         product = prompt("Qual Produto deseja Remover do Carrinho?")
         quantity = parseInt(prompt("Quantidade:"))
         CartDelete(product, quantity);
     } else if (options == 12) {
+        console.clear();
         ReturnPriceTotal();
     } else if (options == 13) {
+        console.clear();
         ShowShopCart();
     }
 
