@@ -1,10 +1,14 @@
 // eCommerce
 var id = [], nameProduct = [], price = [], review = [];
 var idNumber = 1;
-var arrCounter = 0;
+var arrCounter = 0, arrCounterShopCart = 0;
 var arrSupId = [], arrSupName = [], arrSupPrice = [], arrSupReview = [];
 var counterArraySup = 0
-var repeat = true
+var shopCartProducts = [], shopCartQuantity = [], shopCartPrice = [];
+var arrSupShopCartProducts = [], arrSupShopCartQuantity = [], arrSupShopCartPrice = [];
+
+
+var repeat = true;
 
 
 
@@ -133,13 +137,16 @@ function OrderByReview() {
                 biggestReview = parseInt(review[i2]);
             }
         }
+        var counter4 = 0
+
         for (var i3 = 0; i3 < id.length; i3++) {
-            if (biggestReview == review[i3] && biggestReview != 0) {
+            if (biggestReview == review[i3] && counter4 == 0) {
                 arrSupId[counterArraySup] = parseInt(id[i3]);
                 arrSupName[counterArraySup] = nameProduct[i3];
                 arrSupPrice[counterArraySup] = parseInt(price[i3]);
                 arrSupReview[counterArraySup] = parseInt(review[i3]);
                 counterArraySup++;
+                counter4++;
                 review[i3] = 0;
             }
         }
@@ -155,7 +162,7 @@ function OrderByReview() {
     review = arrSupReview
 
 
-}
+};
 
 function UpdatePrice() {
     var search = parseInt(prompt("Digite o ID do Produto que queira atualizar o Preço."))
@@ -166,7 +173,7 @@ function UpdatePrice() {
         }
     }
 
-}
+};
 
 function DeleteProduct() {
     arrSupId = [];
@@ -182,6 +189,7 @@ function DeleteProduct() {
             arrSupName[counterArraySup] = nameProduct[i + 1];
             arrSupPrice[counterArraySup] = parseInt(price[i + 1]);
             arrSupReview[counterArraySup] = parseInt(review[i + 1]);
+            arrCounter = arrCounter - 1;
             counterArraySup++
             i++;
         } else if (search == id[i] && i == id.length - 1) {
@@ -201,7 +209,7 @@ function DeleteProduct() {
     price = arrSupPrice;
     review = arrSupReview;
 
-}
+};
 
 function Options() {
     console.log("eCommerce Vinicius Victor;");
@@ -232,13 +240,48 @@ function Options() {
         DeleteProduct();
     } else if (options == 9) {
         repeat = false;
+    } else if (options == 10) {
+        var product = prompt("Qual Produto deseja adicionar ao Carrinho?")
+        var quantity = parseInt(prompt("Quantidade:"))
+        CartAdd(product, quantity);
     }
+
     return repeat;
+};
+
+function CartAdd(product, quantity) {
+    var counterRepeat = shopCartProducts.length + 1
+    var counter = 0
+    for (var i = 0; i < id.length; i++) {
+        if (product == nameProduct[i]) {
+            for (var i2 = 0; i2 < counterRepeat; i2++) {
+                if (nameProduct[i] == shopCartProducts[i2]) {
+                    shopCartProducts[i2] = nameProduct[i];
+                    shopCartQuantity[i2] = shopCartQuantity[i2] + quantity;
+                    shopCartPrice[i2] = shopCartPrice[i2] + (price[i] * quantity);
+                    counter++;
+                }
+            }
+            if (counter == 0) {
+                shopCartProducts[arrCounterShopCart] = nameProduct[i];
+                shopCartQuantity[arrCounterShopCart] = quantity;
+                shopCartPrice[arrCounterShopCart] = price[i] * quantity;
+                arrCounterShopCart++;
+                counter++;
+            }
+        };
+    };
+    return shopCartProducts, shopCartQuantity, shopCartPrice;
 }
+
 
 while (repeat) {
     Options();
 }
+console.log(shopCartProducts);
+console.log(shopCartQuantity);
+console.log(shopCartPrice);
+
 
 
 
