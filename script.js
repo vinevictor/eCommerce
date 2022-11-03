@@ -251,6 +251,8 @@ function Options() {
         CartDelete(product, quantity);
     } else if (options == 12) {
         ReturnPriceTotal();
+    } else if (options == 13) {
+        ShowShopCart();
     }
 
     return repeat;
@@ -322,6 +324,14 @@ function ReturnPriceTotal() {
 
     return priceTotal;
 };
+
+function ShowShopCart() {
+    for (var i = 0; i < shopCartProducts.length; i++) {
+        console.log("entrou");
+        console.log(shopCartProducts[i] + " | " + "Quantidade: " + shopCartQuantity[i] + " | " + "Preço: " + shopCartPrice[i]);
+    }
+    console.log(ReturnPriceTotal());
+}
 
 
 
